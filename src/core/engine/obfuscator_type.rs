@@ -6,6 +6,7 @@ pub enum ObfuscatorType {
     NoiseInjector,
     StringObfuscator,
     TokenObfuscator,
+    InterpreterWrapper,
 }
 
 impl ObfuscatorType {
@@ -13,12 +14,13 @@ impl ObfuscatorType {
     /// StringObfuscator/Encoder (1) → NoiseInjector (2) → CommandObfuscator (3)
     pub fn weight(self) -> u8 {
         match self {
-            ObfuscatorType::Encoder          => 1,
+            ObfuscatorType::Encoder => 1,
             ObfuscatorType::StringObfuscator => 1,
-            ObfuscatorType::TokenObfuscator  => 1,
-            ObfuscatorType::NoiseInjector    => 2,
-            ObfuscatorType::Compressor       => 2,
+            ObfuscatorType::TokenObfuscator => 1,
+            ObfuscatorType::NoiseInjector => 2,
+            ObfuscatorType::Compressor => 2,
             ObfuscatorType::CommandObfuscator => 3,
+            ObfuscatorType::InterpreterWrapper => 4,
         }
     }
 }
